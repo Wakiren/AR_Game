@@ -13,9 +13,9 @@ namespace uVegas.UI
         [SerializeField] private Image baseImage;  // The card's background image
         [SerializeField] private Image rankImage;  // The image representing the card's rank (A, 2, 3, …)
         [SerializeField] private Image suitImage;  // The image representing the card's suit (hearts, spades, etc.)
-        [SerializeField] public Card currentCard; // The card currently displayed
+        [SerializeField] private Card currentCard; // The card currently displayed
 
-        [SerializeField] public CardTheme currentTheme; // The current theme/style applied to this card
+        [SerializeField] private CardTheme currentTheme; // The current theme/style applied to this card
 
         /// <summary>
         /// Initialize the UI card with a card data and a theme.
@@ -35,7 +35,7 @@ namespace uVegas.UI
         /// Updates the card's visuals based on the current card and theme.
         /// Handles hidden cards, jokers, and normal playing cards.
         /// </summary>
-        private void UpdateTheme()
+        public void UpdateTheme()
         {
             if (currentCard == null) return;
 
@@ -68,6 +68,8 @@ namespace uVegas.UI
             }
 
             // Normal cards (hearts, spades, etc.)
+            suitImage.gameObject.SetActive(true);
+
             baseImage.sprite = currentTheme.baseImage;
             baseImage.color = currentTheme.frontColor;
 
@@ -87,6 +89,9 @@ namespace uVegas.UI
                 suitImage.sprite = suit.image;
                 suitImage.color = suit.color; // Each suit can have its own color
             }
+
+            Debug.Log($"[UICard] {currentCard} | base:{baseImage.sprite} {baseImage.color} | " +
+          $"rank:{rankImage.sprite} {rankImage.color} | suit:{suitImage.sprite} {suitImage.color}");
         }
 
         /// <summary>
