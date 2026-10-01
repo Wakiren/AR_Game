@@ -9,10 +9,12 @@ public class CardSwitcher : MonoBehaviour
     [SerializeField] private CardTheme theme;
 
     private CardUIVariation uiCard;
+    private Rigidbody rb;
 
     private void Awake()
     {
         uiCard = GetComponentInChildren<CardUIVariation>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Start()
@@ -29,5 +31,11 @@ public class CardSwitcher : MonoBehaviour
         }
 
         uiCard.Init(new Card(suit, rank), theme);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        rb.MoveRotation(new Quaternion(0, 90, 0, 0));
+        Debug.Log("Colliding");
     }
 }
