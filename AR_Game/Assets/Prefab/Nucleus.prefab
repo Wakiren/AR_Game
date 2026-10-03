@@ -45,6 +45,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c51e7b1d0934e408bddaee62288ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  hp: 100
+  enemyPrefab: {fileID: 0}
+  innerEnemySpawnRadius: 1
+  outerEnemySpawnRadius: 3
+  spawnTime: 100
+  spawnTimer: 0
+  spawnBlockingLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &6873248912229645887
 PrefabInstance:
   m_ObjectHideFlags: 0

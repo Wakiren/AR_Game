@@ -9,6 +9,9 @@ public class Nucleus : MonoBehaviour
     [SerializeField] private int outerEnemySpawnRadius;
     [SerializeField] private float spawnTime = 100;
     [SerializeField] private float spawnTimer;
+
+    [SerializeField] private LayerMask spawnBlockingLayer;
+
     void Start()
     {
         spawnTimer = spawnTime;
@@ -17,17 +20,22 @@ public class Nucleus : MonoBehaviour
 
     void Update()
     {
-        spawnTimer -= 1 * Time.deltaTime;
-        if (spawnTimer <= 0) 
+        spawnTimer -= Time.deltaTime;
+
+        if (spawnTimer <= 0)
         {
-            Instantiate(enemyPrefab, new Vector3(
-                Random.Range(innerEnemySpawnRadius, outerEnemySpawnRadius), 
-                0,
-                Random.Range(innerEnemySpawnRadius, outerEnemySpawnRadius)),
-                new Quaternion(0, 0, 0, 0));
+            Vector3 spawnPosition = new Vector3(Random.Range(-outerEnemySpawnRadius, outerEnemySpawnRadius),0,
+            Random.Range(-outerEnemySpawnRadius, outerEnemySpawnRadius));
 
-            spawnTimer = spawnTime;
+            float spawnRadius = 1.5f;
 
+            if (!Physics.CheckSphere(spawnPosition, spawnRadius, spawnBlockingLayer))
+            {
+                Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+
+                spawnTimer = spawnTime;
+            }
         }
+
     }
 }

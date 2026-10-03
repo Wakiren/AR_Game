@@ -5,6 +5,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private int hp;
     [SerializeField] private int speed;
+    [SerializeField] public int damage;
+    [SerializeField] private int value;
     [SerializeField] private Transform nucleusTransform;
     [SerializeField] private Rigidbody rb;
 
@@ -19,5 +21,21 @@ public class Enemy : MonoBehaviour
     {
         float step = speed * Time.deltaTime;
         rb.transform.position = Vector3.MoveTowards(transform.position, nucleusTransform.position, step);
+
+        if (hp <= 0) 
+        {
+            Destroy(gameObject);
+        }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Projectile")
+        {
+            hp -= other.gameObject.GetComponent<Projectile>().damage;
+            Game_Manager.Instance.money += value;
+            Destroy(other.gameObject);
+        }
+    }
+
 }
