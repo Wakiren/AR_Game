@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
 
     private Transform target;
 
-    float autoDestruction = 1f;
+    [SerializeField]float autoDestruction = 1f;
 
     public void SetTarget(Transform newTarget)
     {

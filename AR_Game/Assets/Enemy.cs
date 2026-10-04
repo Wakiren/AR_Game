@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float step = speed * Time.deltaTime;
+        float step = speed *0.1f* Time.deltaTime;
         rb.transform.position = Vector3.MoveTowards(transform.position, nucleusTransform.position, step);
 
         if (hp <= 0) 

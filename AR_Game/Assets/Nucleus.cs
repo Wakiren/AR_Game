@@ -5,10 +5,11 @@ public class Nucleus : MonoBehaviour
 
     [SerializeField] private int hp = 100;
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private int innerEnemySpawnRadius;
-    [SerializeField] private int outerEnemySpawnRadius;
+    [SerializeField] private float innerEnemySpawnRadius;
+    [SerializeField] private float outerEnemySpawnRadius;
     [SerializeField] private float spawnTime = 100;
     [SerializeField] private float spawnTimer;
+    [SerializeField] float spawnRadiusCheck;
 
     [SerializeField] private LayerMask spawnBlockingLayer;
 
@@ -27,9 +28,9 @@ public class Nucleus : MonoBehaviour
             Vector3 spawnPosition = new Vector3(Random.Range(-outerEnemySpawnRadius, outerEnemySpawnRadius),0,
             Random.Range(-outerEnemySpawnRadius, outerEnemySpawnRadius));
 
-            float spawnRadius = 1.5f;
 
-            if (!Physics.CheckSphere(spawnPosition, spawnRadius, spawnBlockingLayer))
+
+            if (!Physics.CheckSphere(spawnPosition, spawnRadiusCheck, spawnBlockingLayer))
             {
                 Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
 
@@ -37,5 +38,15 @@ public class Nucleus : MonoBehaviour
             }
         }
 
+        Debug.Log("Nucleus HP" + hp);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            hp -= other.gameObject.GetComponent<Enemy>().damage;
+            Destroy(other.gameObject);
+        }
     }
 }
