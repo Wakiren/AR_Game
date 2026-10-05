@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
 
         if (hp <= 0) 
         {
+            Game_Manager.Instance.money += value;
             Destroy(gameObject);
         }
     }
@@ -33,7 +34,6 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.tag == "Projectile")
         {
             hp -= other.gameObject.GetComponent<Projectile>().damage;
-            Game_Manager.Instance.money += value;
             Destroy(other.gameObject);
         }
     }

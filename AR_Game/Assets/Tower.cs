@@ -16,6 +16,11 @@ public class Tower : MonoBehaviour
     void Start()
     {
         Game_Manager.Instance.money -= cost;
+        if (Game_Manager.Instance.money < 0) 
+        {
+            Game_Manager.Instance.money += cost;
+            Destroy(transform.parent.gameObject);
+        }
     }
 
 

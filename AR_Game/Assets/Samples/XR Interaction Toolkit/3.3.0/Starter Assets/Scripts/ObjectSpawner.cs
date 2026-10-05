@@ -165,7 +165,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
             if (m_CameraToFace == null)
                 m_CameraToFace = Camera.main;
         }
-
+        
         /// <summary>
         /// Sets this behavior to select a random object from <see cref="objectPrefabs"/> each time it spawns.
         /// </summary>

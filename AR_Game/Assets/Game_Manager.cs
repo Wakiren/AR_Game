@@ -23,7 +23,7 @@ public class Game_Manager : MonoBehaviour
 
     private int dineroInicial;
     private bool[] estadoInicialInterfaz;
-    private float tiempoAguantado;
+    public float tiempoAguantado;
     private bool nucleoColocado;
     private bool partidaTerminada;
 
