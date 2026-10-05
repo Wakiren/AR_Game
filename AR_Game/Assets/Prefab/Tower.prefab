@@ -608,7 +608,7 @@ MonoBehaviour:
   shootRadius: 2
   fireRate: 1
   hp: 0
-  cost: 0
+  cost: 10
   fireCooldown: 1
   projectilePrefab: {fileID: 5396612227251202690, guid: 6c5a05ab60396054abf0e85f1a165eb1, type: 3}
   target: {fileID: 0}

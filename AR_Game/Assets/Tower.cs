@@ -15,7 +15,7 @@ public class Tower : MonoBehaviour
 
     void Start()
     {
-        Game_Manager.Instance.money -= 10;
+        Game_Manager.Instance.money -= cost;
     }
 
 

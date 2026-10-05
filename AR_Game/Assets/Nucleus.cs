@@ -16,6 +16,7 @@ public class Nucleus : MonoBehaviour
     void Start()
     {
         spawnTimer = spawnTime;
+        Game_Manager.Instance.NucleoColocado();
     }
 
 
@@ -47,6 +48,11 @@ public class Nucleus : MonoBehaviour
         {
             hp -= other.gameObject.GetComponent<Enemy>().damage;
             Destroy(other.gameObject);
+
+            if (hp <= 0)
+            {
+                Game_Manager.Instance.Perder();
+            }
         }
     }
 }
